@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 80
 
 server.use(bodyParser.json())
 
+server.post('/', bot.webhookCallback)
+
 server.listen(PORT, () =>{
     console.log('Server has been started')
 })
