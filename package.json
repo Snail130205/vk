@@ -6,7 +6,7 @@
   },
   "main": "bot.js",
   "scripts": {
-    "start": "bot.js"
+    "start": "node bot.js"
   },
   "author": "",
   "license": "ISC",
