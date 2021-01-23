@@ -8,7 +8,9 @@ const bot = new VKBot({
     confirmation : "b649c535"
 })
 bot.on((ctx)=>{
-    ctx.reply('Hello')
+    var message = ctx.message.body;
+
+    ctx.reply(message)
 })
 
 const PORT = process.env.PORT || 80
