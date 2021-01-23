@@ -7,9 +7,9 @@ const bot = new VKBot({
     token : "72f8e0d9b6654a8ac278049b0dd4b99f573aa3b67d533d5a5b294ee543ed925003370fa304ffdbbd21c2d",
     confirmation : "1827676c"
 })
-bot.on((ctx)=>{
-    var message = ctx.message.body;
-    if (message.text = 'Толик'){
+bot.command((ctx)=>{
+    var message = ctx.message.text;
+    if (message = 'Толик'){
         ctx.reply('старается')
     }
     else{
