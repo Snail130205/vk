@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const VKBot = require('node-vk-bot-api')
+const VKBot = require('node-vk-bot-api/lib')
 
 const server = express()
 const bot = new VKBot({
@@ -8,19 +8,14 @@ const bot = new VKBot({
     confirmation : "1827676c"
 })
 
-bot.command('/%help', (ctx)=>{
-    ctx.reply('Чтобы записать сроки дз/экзов используйте данную форму: %дз/%экз "Домашнее задание 1 по Математике" 10.12.2100(срок сдачи). Пример: дз " Доделать этого бота " 06.02.2021')
-})
+bot.command('/meet', (ctx) => {
+    ctx.reply('meet');
+});
 
 bot.on((ctx)=>{
     ctx.reply('Ням')
-    ctx.reply('PUDJJ')
 })
-bot.startPolling((err) => {
-    if (err) {
-        console.error(err);
-    }
-});
+
 
 const PORT = process.env.PORT || 80
 
