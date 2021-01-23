@@ -9,8 +9,12 @@ const bot = new VKBot({
 })
 bot.on((ctx)=>{
     var message = ctx.message.body;
-
-    ctx.reply(message)
+    if (message.text = 'Толик'){
+        ctx.reply('старается')
+    }
+    else{
+        ctx.reply('Пудж')
+    }
 })
 
 const PORT = process.env.PORT || 80
