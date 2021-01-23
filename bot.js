@@ -14,7 +14,13 @@ bot.command('/%help', (ctx)=>{
 
 bot.on((ctx)=>{
     ctx.reply('Ням')
+    ctx.reply('PUDJJ')
 })
+bot.startPolling((err) => {
+    if (err) {
+        console.error(err);
+    }
+});
 
 const PORT = process.env.PORT || 80
 
