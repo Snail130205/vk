@@ -2,7 +2,8 @@
   "name": "bot2",
   "version": "1.0.0",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-vk-bot-api": "^3.3.7"
   },
   "main": "bot.js",
   "scripts": {
