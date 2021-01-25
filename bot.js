@@ -53,22 +53,14 @@ bot.command('Бот дз ', (ctx) => {
                 }
                 break;
             case 2:
-                if (i + 10 < message.length){
-                    Date = message.substr(i,11);
-                    var reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})", "gim" );
-                    if (reDate.test(Date)){
-                        i += 11
-                        CheckDescription = 3
+                    var DateTimeCheck = message.substr(i,message.length - i);
+                    var reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})(?:\\s+(\\d{2}:\\d{2}))*", "gim" );
+                    if (reDate.test(DateTimeCheck)) {
+                        Date = RegExp.$1;
+                        Time = RegExp.$2;
+                        check = true;
                     }
-                    else {
                         CrashTest = true
-                    }
-                }
-                break;
-                //
-            case 3:
-                    CrashTest = true
-                    check = true
                 break;
         }
     }
