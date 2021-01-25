@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const VKBot = require('node-vk-bot-api/lib')
+const VKBot = require('node-vk-bot-api')
 
 const server = express()
 const bot = new VKBot({
@@ -8,8 +8,15 @@ const bot = new VKBot({
     confirmation : "32f71526"
 })
 
-bot.command('/meet', (ctx) => {
-    ctx.reply('meet');
+bot.command('/help', (ctx) => {
+    ctx.reply('Чтобы записать домашнее задание и сроки напишите:' +
+        'Бот дз/экз "Условие домашнего задания/экзамена" 01.01.2077(дата) -/19:00(время сдачи или его отсутствие)' +
+        'Например:' +
+        'Бот дз "Поспать 5 часов" 01.01.2077 -' +
+        'Чтобы посмотреть сроки сдач, напишите:' +
+        'бот что скоро сдавать?' +
+        'Если вы, что-либо задолжали, напишите:' +
+        'Все дз.');
 });
 
 bot.on((ctx)=>{
