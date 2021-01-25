@@ -83,6 +83,7 @@ bot.command('Бот дз ', (ctx) => {
                         CrashTest = true;
                     }
                 }
+                break;
         }
     }
 
