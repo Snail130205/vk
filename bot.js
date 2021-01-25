@@ -73,7 +73,7 @@ bot.command('Бот дз ', (ctx) => {
     else {
         Message_answer = 'Вы ошиблись'
     }
- //   ctx.reply(Message_answer)
+    //   ctx.reply(Message_answer);
     ctx.reply(DateTimeCheck)
 })
 
