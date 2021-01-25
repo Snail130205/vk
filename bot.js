@@ -67,15 +67,8 @@ bot.command('Бот дз ', (ctx) => {
                 break;
                 //
             case 3:
-                    Time = message.substr(i, message.length - i)
-                    var reTime = new RegExp("\\s(\\d{2}:\\d{2})", "gim");
-                    if (reTime.test(Time)) {
-                        CrashTest = true
-                        check = true
-                    }
-                    else{
-                        CrashTest = true;
-                    }
+                    CrashTest = true
+                    check = true
                 break;
         }
     }
