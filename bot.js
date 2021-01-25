@@ -33,7 +33,7 @@ bot.command('Бот дз ', (ctx) => {
     var Date = '' // дата сдачи
     var Time = '' // время сдачи
     var check = false; // проверка строки на формат записи
-
+/*
 // цикл проверки
     for (var i = 7; (i < message.length)||(CrashTest); i++) {
         switch (CheckDescription){
@@ -84,7 +84,7 @@ bot.command('Бот дз ', (ctx) => {
                 }
         }
     }
-
+*/
     if (check = true){
         ctx.reply('Данные внесены в базу')}
     else {
