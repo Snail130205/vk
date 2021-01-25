@@ -32,8 +32,8 @@ bot.command('Бот дз ', (ctx) => {
     var Date = '' // дата сдачи
     var Time = '' // время сдачи
     var Message_answer = '' // ответ
-    var check = true; // проверка строки на формат записи
-/*
+    var check = false; // проверка строки на формат записи
+
 // цикл проверки
     for (var i = 7; (i < message.length)||(CrashTest); i++) {
         switch (CheckDescription){
@@ -55,24 +55,26 @@ bot.command('Бот дз ', (ctx) => {
                 break;
             case 2:
                     var DateTimeCheck = message.substr(i,message.length - i);
-                    var reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})(?:\\s+(\\d{2}:\\d{2}))*", "gim" );
+                    /*var reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})(?:\\s+(\\d{2}:\\d{2}))*", "gim" );
                     if (reDate.test(DateTimeCheck)) {
                         Date = RegExp.$1;
                         Time = RegExp.$2;
                         check = true;
-                    };
+                    };*/
                         CrashTest = true
+
                 break;
         }
     }
-/*/
+
     if (check){
         Message_answer = 'Данные внесены в базу'
     }
     else {
         Message_answer = 'Вы ошиблись'
     }
-    ctx.reply(Message_answer)
+ //   ctx.reply(Message_answer)
+    ctx.reply(DateTimeCheck)
 })
 
 bot.on((ctx)=>{
