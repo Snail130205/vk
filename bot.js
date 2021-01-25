@@ -32,8 +32,8 @@ bot.command('Бот дз ', (ctx) => {
     var Date = '' // дата сдачи
     var Time = '' // время сдачи
     var Message_answer = '' // ответ
-    var check = false; // проверка строки на формат записи
-//
+    var check = true; // проверка строки на формат записи
+/*
 // цикл проверки
     for (var i = 7; (i < message.length)||(CrashTest); i++) {
         switch (CheckDescription){
@@ -60,12 +60,12 @@ bot.command('Бот дз ', (ctx) => {
                         Date = RegExp.$1;
                         Time = RegExp.$2;
                         check = true;
-                    }
+                    };
                         CrashTest = true
                 break;
         }
     }
-//
+/*/
     if (check){
         Message_answer = 'Данные внесены в базу'
     }
