@@ -37,7 +37,7 @@ bot.command('Бот дз ', (ctx) => {
     let check = false; // проверка строки на формат записи
 
 // цикл проверки
-    for (let i = 7; (i < message.length)||(CrashTest); i++) {
+    for (let i = 7; (i < message.length)&&(CrashTest); i++) {
         switch (CheckDescription){
             case 0:
                 if (message[7] = '"'){
