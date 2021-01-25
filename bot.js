@@ -70,7 +70,7 @@ bot.command('Бот дз ', (ctx) => {
                     if(message.substr(i,2) == ' -'){
                     CrashTest = true
                     check = true
-                    }
+                    } //
                 }
                 else{
                     Time = message.substr(i, message.length - i)
