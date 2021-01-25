@@ -20,7 +20,8 @@ bot.command('/help', (ctx) => {
 });
 
 bot.command('Бот дз', (ctx) => {
-    ctx.reply('like a boss')
+    var message = ctx.message.text;
+    ctx.reply(message)
 })
 
 bot.on((ctx)=>{
