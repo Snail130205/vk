@@ -5,7 +5,7 @@ const VKBot = require('node-vk-bot-api')
 const server = express()
 const bot = new VKBot({
     token : "72f8e0d9b6654a8ac278049b0dd4b99f573aa3b67d533d5a5b294ee543ed925003370fa304ffdbbd21c2d",
-    confirmation : "8739a2c5"
+    confirmation : "03c600ef"
 })
 // комманда помощь
 bot.command('/help', (ctx) => {
@@ -28,11 +28,9 @@ bot.command('Бот дз ', (ctx) => {
     //1 - вторая " - конец условия дз
     //2 - проверка формата даты
     //3 - проверка формата времени
-    let CrashTest = false
+    let CrashTest = true
     let Date = '' // дата сдачи
-    let DateCheck = 0;
     let Time = '' // время сдачи
-    let TimeCheck = 0;
     let Message_answer = '' // ответ
     let check = false; // проверка строки на формат записи
 
@@ -44,7 +42,7 @@ bot.command('Бот дз ', (ctx) => {
                     CheckDescription = 1
                 }
                 else{
-                    CrashTest = true
+                    CrashTest = false
                 }
                 break;
             case 1:
@@ -53,15 +51,42 @@ bot.command('Бот дз ', (ctx) => {
                 }
                 else{
                     CheckDescription = 2
-                    CrashTest = true;
-                    check = true;
                 }
                 break;
-            /* case 2:
+            case 2:
+                if (i + 10 < message.length){
+                    Date = message.substr(i, 11);
+                    let reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})", "gim" );
+                    if(reDate.test(Date)){
+                        i += 10;
+                        CheckDescription = 3
+                    }
+                    else{
+                        CrashTest = false
+                    }
+                }
+                else{
+                    CrashTest = false
+                }
 
+                break;
             case 3:
-
-                break; */
+            if ((i + 2 == message.length)&&(message.substr(i, 2) == ' -')) {
+                CrashTest = false
+                check = true
+            }
+            else{
+                Time = message.substr(i, message.length - i)
+                let reTime = new RegExp("\\s(\\d{2}:\\d{2})", "gim")
+                if(reTime.test(Time)){
+                    CrashTest = false
+                    check = true
+                }
+            else{
+                    CrashTest = false
+                }
+            }
+                break;
         }
     }
 
