@@ -60,7 +60,7 @@ bot.command('Бот дз ', (ctx) => {
                         Date = RegExp.$1;
                         Time = RegExp.$2;
                         check = true;
-                    };
+                    }
                         CrashTest = true
                 break;
         }
