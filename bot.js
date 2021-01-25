@@ -66,13 +66,15 @@ bot.command('Бот дз ', (ctx) => {
                 }
                 break;
             case 3:
-                if ((i + 2 == message.length)&&(message.substr(i,2) == ' -')){
+                if (i + 2 == message.length){
+                    if(message.substr(i,2) == ' -'){
                     CrashTest = true
                     check = true
+                    }
                 }
                 else{
                     Time = message.substr(i, message.length - i)
-                    var reTime = new RegExp("\\s(\\d{2}\\:\\d{2})")
+                    var reTime = new RegExp("\\s(\\d{2}:\\d{2})")
                     if (reTime.test(Time)){
                         CrashTest = true
                         check = true
