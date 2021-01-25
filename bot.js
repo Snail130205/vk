@@ -86,7 +86,7 @@ bot.command('Бот дз ', (ctx) => {
                 break;
         }
     }
-
+//
     if (check){
         ctx.reply('Данные внесены в базу')}
     else {
