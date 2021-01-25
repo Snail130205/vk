@@ -21,21 +21,21 @@ bot.command('/help', (ctx) => {
 
 //Бот дз, проверка, запись дз в базу данных
 bot.command('Бот дз ', (ctx) => {
-    var message = ctx.message.text; // получаемый текст
-    var Description_of_Homework = ''; // условие дз
-    var CheckDescription = 0; // проверка условий
+    let message = ctx.message.text; // получаемый текст
+    let Description_of_Homework = ''; // условие дз
+    let CheckDescription = 0; // проверка условий
     //0 - первая " - начало условия дз
     //1 - вторая " - конец условия дз
     //2 - проверка формата даты
     //3 - проверка формата времени
-    var CrashTest = false
-    var Date = '' // дата сдачи
-    var Time = '' // время сдачи
-    var Message_answer = '' // ответ
-    var check = false; // проверка строки на формат записи
+    let CrashTest = false
+    let Date = '' // дата сдачи
+    let Time = '' // время сдачи
+    let Message_answer = '' // ответ
+    let check = false; // проверка строки на формат записи
 
 // цикл проверки
-    for (var i = 7; (i < message.length)||(CrashTest); i++) {
+    for (let i = 7; (i < message.length)||(CrashTest); i++) {
         switch (CheckDescription){
             case 0:
                 if (message[7] = '"'){
@@ -54,15 +54,14 @@ bot.command('Бот дз ', (ctx) => {
                 }
                 break;
             case 2:
-                    var DateTimeCheck = message.substr(i,message.length - i);
-                    /*var reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})(?:\\s+(\\d{2}:\\d{2}))*", "gim" );
+                    let DateTimeCheck = message.substr(i,message.length - i);
+                    let reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})(?:\\s+(\\d{2}:\\d{2}))*", "gim" );
                     if (reDate.test(DateTimeCheck)) {
                         Date = RegExp.$1;
                         Time = RegExp.$2;
                         check = true;
-                    };*/
+                    };
                         CrashTest = true
-
                 break;
         }
     }
@@ -73,8 +72,7 @@ bot.command('Бот дз ', (ctx) => {
     else {
         Message_answer = 'Вы ошиблись'
     }
-    //   ctx.reply(Message_answer);
-    ctx.reply(DateTimeCheck)
+    ctx.reply(Message_answer)
 })
 
 bot.on((ctx)=>{
