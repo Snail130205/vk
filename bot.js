@@ -31,6 +31,7 @@ bot.command('Бот дз ', (ctx) => {
     var CrashTest = false
     var Date = '' // дата сдачи
     var Time = '' // время сдачи
+    var Message_answer = '' // ответ
     var check = false; // проверка строки на формат записи
 //
 // цикл проверки
@@ -46,7 +47,7 @@ bot.command('Бот дз ', (ctx) => {
                 break;
             case 1:
                 if (message[i] != '"'){
-                    Description_of_Homework += message[i]
+                    Description_of_Homework += message[i];
                 }
                 else{
                     CheckDescription = 2
@@ -66,10 +67,12 @@ bot.command('Бот дз ', (ctx) => {
     }
 //
     if (check){
-        ctx.reply('Данные внесены в базу')}
-    else {
-        ctx.reply('Вы ошиблись')
+        Message_answer = 'Данные внесены в базу'
     }
+    else {
+        Message_answer = 'Вы ошиблись'
+    }
+    ctx.reply(Message_answer)
 })
 
 bot.on((ctx)=>{
