@@ -19,8 +19,12 @@ bot.command('/help', (ctx) => {
         'Все дз.\n');
 });
 
+bot.command('Бот дз', (ctx) => {
+    ctx.reply('like a boss')
+})
+
 bot.on((ctx)=>{
-    ctx.reply('Ням')
+
 })
 
 
