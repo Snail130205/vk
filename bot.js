@@ -100,7 +100,7 @@ bot.command('Бот дз ', (ctx) => {
 })
 
 bot.on((ctx)=>{
-    ctx.reply(ctx.getConversationsById.peer_ids)
+    ctx.reply(ctx.message.text)
 })
 
 
