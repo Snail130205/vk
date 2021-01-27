@@ -8,8 +8,6 @@ const bot = new VKBot({
     confirmation : "b6773308"
 });
 
-
-})
 // комманда помощь
 bot.command('/help', (ctx) => {
     ctx.reply('Чтобы записать домашнее задание и сроки напишите:\n' +
@@ -103,7 +101,7 @@ bot.command('Бот дз ', (ctx) => {
 })
 
 bot.on((ctx)=>{
-    ctx.reply()
+
 })
 
 
