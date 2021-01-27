@@ -8,8 +8,7 @@ const bot = new VKBot({
     confirmation : "b6773308"
 });
 
-const chatid = await bot.execute('messages.getConversationsById',{
-    peer_ids: 1,
+
 })
 // комманда помощь
 bot.command('/help', (ctx) => {
@@ -104,7 +103,7 @@ bot.command('Бот дз ', (ctx) => {
 })
 
 bot.on((ctx)=>{
-    ctx.reply(chatid)
+    ctx.reply()
 })
 
 
