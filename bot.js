@@ -6,6 +6,10 @@ const server = express()
 const bot = new VKBot({
     token : "72f8e0d9b6654a8ac278049b0dd4b99f573aa3b67d533d5a5b294ee543ed925003370fa304ffdbbd21c2d",
     confirmation : "b6773308"
+});
+
+const chatid = await bot.execute('messages.getConversationsById',{
+    peer_ids: 1,
 })
 // комманда помощь
 bot.command('/help', (ctx) => {
@@ -100,7 +104,7 @@ bot.command('Бот дз ', (ctx) => {
 })
 
 bot.on((ctx)=>{
-    ctx.reply(ctx.user_id)
+    ctx.reply(chatid)
 })
 
 
