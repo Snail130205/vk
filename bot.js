@@ -100,7 +100,7 @@ bot.command('Бот дз ', (ctx) => {
 })
 
 bot.on((ctx)=>{
-    ctx.reply(ctx.message.chat.id)
+    ctx.reply(ctx.message.from.id)
 })
 
 
