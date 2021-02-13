@@ -5,7 +5,7 @@ const VKBot = require('node-vk-bot-api')
 const server = express()
 const bot = new VKBot({
     token : "72f8e0d9b6654a8ac278049b0dd4b99f573aa3b67d533d5a5b294ee543ed925003370fa304ffdbbd21c2d",
-    confirmation : "b6773308"
+    confirmation : "93cc93d9"
 });
 
 // комманда помощь
@@ -72,21 +72,21 @@ bot.command('Бот дз ', (ctx) => {
 
                 break;
             case 3:
-            if ((i + 2 == message.length)&&(message.substr(i, 2) == ' -')) {
-                CrashTest = false
-                check = true
-            }
-            else{
-                Time = message.substr(i, message.length - i)
-                let reTime = new RegExp("\\s(\\d{2}:\\d{2})", "gim")
-                if(reTime.test(Time)){
+                if ((i + 2 == message.length)&&(message.substr(i, 2) == ' -')) {
                     CrashTest = false
                     check = true
                 }
-            else{
-                    CrashTest = false
+                else{
+                    Time = message.substr(i, message.length - i)
+                    let reTime = new RegExp("\\s(\\d{2}:\\d{2})", "gim")
+                    if(reTime.test(Time)){
+                        CrashTest = false
+                        check = true
+                    }
+                    else{
+                        CrashTest = false
+                    }
                 }
-            }
                 break;
         }
     }
@@ -101,7 +101,7 @@ bot.command('Бот дз ', (ctx) => {
 })
 
 bot.on((ctx)=>{
-   // ctx.reply(ctx.message.peer_id)
+    // ctx.reply(ctx.message.peer_id)
 })
 
 
