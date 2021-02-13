@@ -1,6 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const VKBot = require('node-vk-bot-api')
+var mysql = require('mysql')
+
+var connection = mysql.createConnection({
+    host : "localhost",
+    root : "root",
+    password : "BotVk"
+})
 
 const server = express()
 const bot = new VKBot({
