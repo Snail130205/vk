@@ -6,16 +6,16 @@ var mysql = require('mysql')
 var con = mysql.createConnection({
     host : "localhost",
     root : "root",
-    password : "BotVk"
+    password : ""
 })
 
 let dbws = 'No'
-/*
+
 con.connect(function(err) {
     if (err) throw err;
     dbws = 'yes'
 })
-*/
+
 
 /*
 con.connect(function(err) {
