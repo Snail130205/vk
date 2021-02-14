@@ -12,6 +12,16 @@ const con = mysql.createConnection({
 
 let dbws = 'No'
 //
+con.connect(function(err) {
+    if (err) {
+        return err;
+    }
+    else{
+        dbws = 'yes'
+    }
+})
+
+
 
 
 const server = express()
@@ -22,19 +32,7 @@ const bot = new VKBot({
 
 
 bot.command('/db', (ctx) => {
-    con.connect(function(err) {
-        if (err) {
-            return err;
-        }
-        else{
-            dbws = 'yes'
-        }
-    })
     ctx.reply(dbws)
-
-
-    con.end(function(err) {
-        if (err) throw (err)
 })
 
 // комманда помощь
