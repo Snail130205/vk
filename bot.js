@@ -5,7 +5,7 @@ const mysql = require('mysql')
 
 const con = mysql.createConnection({
     host : "us-cdbr-east-03.cleardb.com",
-    root : "b5015f599c4103",
+    user : "b5015f599c4103",
     password : "7392f867",
     db : "heroku_9f485881cdbde55"
 })
