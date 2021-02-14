@@ -21,6 +21,9 @@ con.connect(function(err) {
     }
 })
 
+mysqlConnection.query("SET SESSION wait_timeout = 604800");
+
+
 const server = express()
 const bot = new VKBot({
     token : "72f8e0d9b6654a8ac278049b0dd4b99f573aa3b67d533d5a5b294ee543ed925003370fa304ffdbbd21c2d",
