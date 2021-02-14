@@ -1,9 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const VKBot = require('node-vk-bot-api')
-var mysql = require('mysql')
+const mysql = require('mysql')
 
-var con = mysql.createConnection({
+const con = mysql.createConnection({
     host : "us-cdbr-east-03.cleardb.com",
     root : "b20a89ab9cb0e0",
     password : "8ceabebc",
