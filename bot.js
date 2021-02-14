@@ -34,10 +34,10 @@ bot.command('/db', (ctx) => {
         if (err) throw err;
         dbws = 'yes'
     })
-    ctx.reply(dbws)
     con.end((err) =>{
         if (err) throw err;
     })
+    ctx.reply(dbws)
 })
 
 // комманда помощь
