@@ -11,7 +11,7 @@ const con = mysql.createConnection({
 })
 
 let dbws = 'No'
-//
+/*/
 con.connect(function(err) {
     if (err) {
         return err;
@@ -21,7 +21,7 @@ con.connect(function(err) {
     }
 })
 
-
+/*/
 
 
 const server = express()
