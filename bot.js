@@ -4,9 +4,10 @@ const VKBot = require('node-vk-bot-api')
 var mysql = require('mysql')
 
 var con = mysql.createConnection({
-    host : "localhost",
-    root : "root",
-    password : ""
+    host : "us-cdbr-east-03.cleardb.com",
+    root : "b20a89ab9cb0e0",
+    password : "8ceabebc",
+    database : "heroku_4a8f0e4d0adfe1e"
 })
 
 let dbws = 'No'
