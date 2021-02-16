@@ -126,7 +126,7 @@ bot.command('Бот дз ', (ctx) => {
         sql = "insert into profile (idgroup, HoE, Condition, Dates, timing) values (id, 'H', Description_of_Homework, Date, Time)";
         con.query("SELECT * FROM profile", function (err, result, fields) {
             if (err) throw err;
-            ctx.reply(result);
+            ctx.reply('result');
         });
         con.end((err)=>{
             if (err) throw err;
