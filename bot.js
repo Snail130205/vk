@@ -10,8 +10,9 @@ const con = mysql.createConnection({
     db : "heroku_9f485881cdbde55"
 })
 
+let sql;
 
-con.connect(function(err, sql) {
+con.connect(function(err) {
     if (err) throw err;
 
     sql = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
@@ -119,8 +120,9 @@ bot.command('Бот дз ', (ctx, sql) => {
         con.connect((err)=>{
             if (err) throw err;
             sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values (id, 'H', Description_of_Homework, DateH, TimeH)";
-            con.query(sql, function (err, result, fields) {
+            con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
+                Message_answer = result;
             });
 
             con.end((err)=>{
