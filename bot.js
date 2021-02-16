@@ -62,7 +62,7 @@ bot.command('Бот дз ', (ctx) => {
     for (let i = 7; (i < message.length)&&(CrashTest); i++) {
         switch (CheckDescription){
             case 0:
-                if (message[7] = '"'){
+                if (message[7] == '"'){
                     CheckDescription = 1
                 }
                 else{
@@ -116,22 +116,22 @@ bot.command('Бот дз ', (ctx) => {
 
     if (check){
         Message_answer = 'Данные внесены в базу'
+        con.connect((err)=>{
+            if (err) throw err;
+            sql = "insert into profile (idgroup, HoE, Codition, Dates, timing) values (id, 'H', Description_of_Homework, Date, Time)";
+            con.query(sql, function (err, result, fields) {
+                if (err) throw err;
+            });
+            con.end((err)=>{
+                if (err) throw err;
+            })
+        })
     }
     else {
         Message_answer = 'Вы ошиблись'
     }
+    ctx.reply(Message_answer);
 
-    con.connect((err)=>{
-        if (err) throw err;
-        sql = "insert into profile (idgroup, HoE, Condition, Dates, timing) values (id, 'H', Description_of_Homework, Date, Time)";
-        con.query("SELECT * FROM profile", function (err, result, fields) {
-            if (err) throw err;
-            ctx.reply('result');
-        });
-        con.end((err)=>{
-            if (err) throw err;
-        })
-    })
 
 })
 
