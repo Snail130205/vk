@@ -45,6 +45,7 @@ bot.command('/help', (ctx) => {
 //Бот дз, проверка, запись дз в базу данных
 bot.command('Бот дз ', (ctx) => {
     let message = ctx.message.text; // получаемый текст
+    let id = ctx.message.peer_id; // айди беседы
     let Description_of_Homework = ''; // условие дз
     let CheckDescription = 0; // проверка условий
     //0 - первая " - начало условия дз
@@ -119,7 +120,19 @@ bot.command('Бот дз ', (ctx) => {
     else {
         Message_answer = 'Вы ошиблись'
     }
-    ctx.reply(Message_answer)
+
+    con.connect((err)=>{
+        if (err) throw err;
+        sql = "insert into profile (idgroup, HoE, Condition, Dates, timing) values (id, 'H', Description_of_Homework, Date, Time)";
+        con.query("SELECT * FROM profile", function (err, result, fields) {
+            if (err) throw err;
+            ctx.reply(result);
+        });
+        con.end((err)=>{
+            if (err) throw err;
+        })
+    })
+
 })
 
 bot.on((ctx)=>{
