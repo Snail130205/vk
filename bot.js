@@ -81,7 +81,7 @@ bot.command('Бот дз ', (ctx, sql) => {
                 if (i + 10 < message.length){
                     DateH = message.substr(i, 11);
                     let reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})", "gim" );
-                    if(reDate.test(Date)){
+                    if(reDate.test(DateH)){
                         i += 10;
                         CheckDescription = 3
                     }
