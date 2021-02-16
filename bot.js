@@ -11,10 +11,10 @@ const con = mysql.createConnection({
 })
 
 
-con.connect(function(err) {
+con.connect(function(err, sql) {
     if (err) throw err;
 
-    let sql = "CREATE TABLE profile (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
+    sql = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
     con.end ((err) => {
         if (err) throw err;
     })
@@ -43,7 +43,7 @@ bot.command('/help', (ctx) => {
 });
 
 //Бот дз, проверка, запись дз в базу данных
-bot.command('Бот дз ', (ctx) => {
+bot.command('Бот дз ', (ctx, sql) => {
     let message = ctx.message.text; // получаемый текст
     let id = ctx.message.peer_id; // айди беседы
     let Description_of_Homework = ''; // условие дз
@@ -53,8 +53,8 @@ bot.command('Бот дз ', (ctx) => {
     //2 - проверка формата даты
     //3 - проверка формата времени
     let CrashTest = true
-    let Date = '' // дата сдачи
-    let Time = '' // время сдачи
+    let DateH = '' // дата сдачи
+    let TimeH= '' // время сдачи
     let Message_answer = '' // ответ
     let check = false; // проверка строки на формат записи
 
@@ -79,7 +79,7 @@ bot.command('Бот дз ', (ctx) => {
                 break;
             case 2:
                 if (i + 10 < message.length){
-                    Date = message.substr(i, 11);
+                    DateH = message.substr(i, 11);
                     let reDate = new RegExp( "\\s(\\d{2}\\.\\d{2}\\.\\d{4})", "gim" );
                     if(reDate.test(Date)){
                         i += 10;
@@ -100,9 +100,9 @@ bot.command('Бот дз ', (ctx) => {
                     check = true
                 }
                 else{
-                    Time = message.substr(i, message.length - i)
+                    TimeH = message.substr(i, message.length - i)
                     let reTime = new RegExp("\\s(\\d{2}:\\d{2})", "gim")
-                    if(reTime.test(Time)){
+                    if(reTime.test(TimeH)){
                         CrashTest = false
                         check = true
                     }
@@ -118,10 +118,11 @@ bot.command('Бот дз ', (ctx) => {
         Message_answer = 'Данные внесены в базу'
         con.connect((err)=>{
             if (err) throw err;
-            sql = "insert into profile (idgroup, HoE, Codition, Dates, timing) values (id, 'H', Description_of_Homework, Date, Time)";
+            sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values (id, 'H', Description_of_Homework, DateH, TimeH)";
             con.query(sql, function (err, result, fields) {
                 if (err) throw err;
             });
+
             con.end((err)=>{
                 if (err) throw err;
             })
@@ -134,11 +135,11 @@ bot.command('Бот дз ', (ctx) => {
 
 
 })
-
+/*
 bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
 })
-
+*/
 
 const PORT = process.env.PORT || 80
 
