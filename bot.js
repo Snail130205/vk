@@ -120,9 +120,9 @@ bot.command('Бот дз ', (ctx, sql) => {
         con.connect((err)=>{
             if (err) throw err;
             sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values (id, 'H', Description_of_Homework, DateH, TimeH)";
-            con.query("SELECT * FROM customers", function (err, result, fields) {
+            con.query(sql, function (err, result, fields) {
                 if (err) throw err;
-                Message_answer = result;
+                Message_answer = 'Sempai' + result;
             });
 
             con.end((err)=>{
