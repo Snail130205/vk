@@ -10,18 +10,16 @@ const con = mysql.createConnection({
     db : "heroku_9f485881cdbde55"
 })
 
-let dbws = 'No'
-/*/
+
 con.connect(function(err) {
-    if (err) {
-        return err;
-    }
-    else{
-        dbws = 'yes'
-    }
+    if (err) throw err;
+
+    let sql = "CREATE TABLE profile (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
+    con.end ((err) => {
+        if (err) throw err;
+    })
 })
 
-/*/
 
 
 const server = express()
@@ -31,9 +29,6 @@ const bot = new VKBot({
 });
 
 
-bot.command('/db', (ctx) => {
-    ctx.reply(dbws)
-})
 
 // комманда помощь
 bot.command('/help', (ctx) => {
