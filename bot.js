@@ -22,7 +22,7 @@ const bot = new VKBot({
 
 con.connect(function(err) {
     if (err) throw err;
-    var sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
+    var sql  = "Alter TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
 // комманда помощь
 bot.command('/help', (ctx) => {
     ctx.reply('Чтобы записать домашнее задание и сроки напишите:\n' +
@@ -116,7 +116,7 @@ bot.command('Бот дз ', (ctx) => {
             });
             con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
-                Message_answer = 'Sempai ' //  + result[0].idgroup + result[0].Hoe + result[0].Codition;
+                Message_answer = 'Sempai '   + result.idgroup + result.HoE + result.Codition;
             });
 
     }
