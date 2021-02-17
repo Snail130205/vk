@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const VKBot = require('node-vk-bot-api')
 const mysql = require('mysql')
 
-const con = mysql.createConnection({
+var con = mysql.createConnection({
     host : "us-cdbr-east-03.cleardb.com",
     user : "b5015f599c4103",
     password : "7392f867",
