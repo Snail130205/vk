@@ -10,7 +10,7 @@ const con = mysql.createConnection({
     db : "heroku_9f485881cdbde55"
 })
 
-let sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
+let sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
 
 
 
