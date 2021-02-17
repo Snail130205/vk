@@ -17,8 +17,7 @@ var con = mysql.createConnection({
     database : "heroku_5b614e065794d0c"
 })
 
-con.connect(function(err) {
-    if (err) throw err;
+
 /*
     var sql = "ALTER TABLE customers ADD Condition1 varchar(255)";
     con.query(sql, function (err, result) {
@@ -139,10 +138,7 @@ bot.on((ctx)=>{
 })
 */
 
-    con.end((err) => {
-        if (err) throw err;
-    })
-})
+
 
 const PORT = process.env.PORT || 80
 
