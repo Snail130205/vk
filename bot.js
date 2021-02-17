@@ -109,10 +109,9 @@ bot.command('Бот дз ', (ctx) => {
     if (check){
         Message_answer = 'Данные внесены в базу'
             var sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values ('id', 'H', 'Description_of_Homework', 'DateH', 'TimeH')";
-            con.query(sql, function (err, result, fields) {
+            con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
-                Message_answer = 'Sempai' + result;
-                console.log(result)
+                Message_answer = 'Sempai' + result[0].idgroup + result[0].Hoe + result[0].Codition;
             });
 
     }
