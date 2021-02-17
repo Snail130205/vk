@@ -43,10 +43,10 @@ bot.command('/help', (ctx) => {
 });
 
 //Бот дз, проверка, запись дз в базу данных
-bot.command('Бот дз ', (ctx) => {
+    bot.command('Бот дз ', (ctx) => {
     let message = ctx.message.text; // получаемый текст
     let id = ctx.message.peer_id; // айди беседы
-    var HoE = 'H';
+    var HoE = 'H'
     let Description_of_Homework = ''; // условие дз
     let CheckDescription = 0; // проверка условий
     //0 - первая " - начало условия дз
@@ -96,9 +96,10 @@ bot.command('Бот дз ', (ctx) => {
 
                 break;
             case 3:
-                if ((i + 1 == message.length)&&(message.substr(i, 2) == ' -')) {
+                if ((i + 2 == message.length)&&(message.substr(i, 2) == ' -')) {
                     CrashTest = false
                     check = true
+                    TimeH = '-'
                 }
                 else{
                     TimeH = message.substr(i, message.length - i)
@@ -119,16 +120,11 @@ bot.command('Бот дз ', (ctx) => {
         Message_answer = 'Данные внесены в базу'
 
             var sql = "INSERT INTO customers (idgroup, HoE, Dates, timing, Condition1) VALUES ?";
-            var values = [id, HoE, DateH, TimeH, Description_of_Homework]
+            var values = [[id, HoE, DateH, TimeH, Description_of_Homework]]
             con.query(sql, [values], function (err, result) {
+
                 if (err) throw err;
             });
-
-            con.query("SELECT * FROM customers", function (err, result, fields) {
-                if (err) throw err;
-                Message_answer = Message_answer + ' ня ня ' ;
-            });
-
     }
     else {
         Message_answer = 'Вы ошиблись'
@@ -136,7 +132,7 @@ bot.command('Бот дз ', (ctx) => {
     ctx.reply(Message_answer);
 
 
-//})
+})
 /*
 bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
