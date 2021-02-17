@@ -126,7 +126,7 @@ bot.command('Бот дз ', (ctx) => {
 
             con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
-                Message_answer = Message_answer + ' ня ня ' + result[0][1];
+                Message_answer = Message_answer + ' ня ня ' ;
             });
 
     }
