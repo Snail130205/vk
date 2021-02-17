@@ -10,7 +10,7 @@ var con = mysql.createConnection({
     database : "heroku_9f485881cdbde55"
 })
 
-var sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
+
 
 
 
@@ -20,8 +20,9 @@ const bot = new VKBot({
     confirmation : "93cc93d9"
 });
 
-
-
+con.connect(function(err) {
+    if (err) throw err;
+    var sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
 // комманда помощь
 bot.command('/help', (ctx) => {
     ctx.reply('Чтобы записать домашнее задание и сроки напишите:\n' +
@@ -109,17 +110,14 @@ bot.command('Бот дз ', (ctx) => {
     if (check){
         Message_answer = 'Данные внесены в базу'
 
-        con.connect(function(err) {
-            if (err) throw err;
             sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) VALUES ('id', 'H', 'Description_of_Homework', 'DateH', 'TimeH')";
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+            });
             con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
-                Message_answer = 'Sempai ' // + result[0].idgroup + result[0].Hoe + result[0].Codition;
+                Message_answer = 'Sempai ' //  + result[0].idgroup + result[0].Hoe + result[0].Codition;
             });
-        con.end((err) => {
-            if (err) throw err;
-            })
-        })
 
     }
     else {
@@ -134,6 +132,11 @@ bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
 })
 */
+
+    con.end((err) => {
+        if (err) throw err;
+    })
+})
 
 const PORT = process.env.PORT || 80
 
