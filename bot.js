@@ -3,16 +3,6 @@ const bodyParser = require('body-parser')
 const VKBot = require('node-vk-bot-api')
 const mysql = require('mysql')
 
-var con = mysql.createConnection({
-    host : "us-cdbr-east-03.cleardb.com",
-    user : "b5015f599c4103",
-    password : "7392f867",
-    database : "heroku_9f485881cdbde55"
-})
-
-
-
-
 
 const server = express()
 const bot = new VKBot({
@@ -20,10 +10,27 @@ const bot = new VKBot({
     confirmation : "93cc93d9"
 });
 
+var con = mysql.createConnection({
+    host : "us-cdbr-east-03.cleardb.com",
+    user : "b4587dcf2c387d",
+    password : "8fbd3692",
+    database : "heroku_5b614e065794d0c"
+})
+
 con.connect(function(err) {
     if (err) throw err;
-    var sql  = "Alter TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
-// комманда помощь
+/*
+    var sql = "ALTER TABLE customers ADD Condition1 varchar(255)";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(err)
+        console.log(result)
+    })
+
+*/
+
+
+    // комманда помощь
 bot.command('/help', (ctx) => {
     ctx.reply('Чтобы записать домашнее задание и сроки напишите:\n' +
         'Бот дз/экз "Условие домашнего задания/экзамена" 01.01.2077(дата) -/19:00(время сдачи или его отсутствие)\n' +
@@ -39,6 +46,7 @@ bot.command('/help', (ctx) => {
 bot.command('Бот дз ', (ctx) => {
     let message = ctx.message.text; // получаемый текст
     let id = ctx.message.peer_id; // айди беседы
+    var HoE = 'H';
     let Description_of_Homework = ''; // условие дз
     let CheckDescription = 0; // проверка условий
     //0 - первая " - начало условия дз
@@ -88,7 +96,7 @@ bot.command('Бот дз ', (ctx) => {
 
                 break;
             case 3:
-                if ((i + 2 == message.length)&&(message.substr(i, 2) == ' -')) {
+                if ((i + 1 == message.length)&&(message.substr(i, 2) == ' -')) {
                     CrashTest = false
                     check = true
                 }
@@ -110,13 +118,15 @@ bot.command('Бот дз ', (ctx) => {
     if (check){
         Message_answer = 'Данные внесены в базу'
 
-            sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) VALUES ('id', 'H', 'Description_of_Homework', 'DateH', 'TimeH')";
-            con.query(sql, function (err, result) {
+            var sql = "INSERT INTO customers (idgroup, HoE, Dates, timing, Condition1) VALUES ?";
+            var values = [id, HoE, DateH, TimeH, Description_of_Homework]
+            con.query(sql, [values], function (err, result) {
                 if (err) throw err;
             });
+
             con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
-                Message_answer = 'Sempai '   + result.idgroup + result.HoE + result.Codition;
+                Message_answer = Message_answer + ' ня ня ' + result[0][1];
             });
 
     }
@@ -126,7 +136,7 @@ bot.command('Бот дз ', (ctx) => {
     ctx.reply(Message_answer);
 
 
-})
+//})
 /*
 bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
