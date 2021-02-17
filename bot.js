@@ -112,6 +112,7 @@ bot.command('Бот дз ', (ctx) => {
             con.query(sql, function (err, result, fields) {
                 if (err) throw err;
                 Message_answer = 'Sempai' + result;
+                console.log(result)
             });
 
     }
