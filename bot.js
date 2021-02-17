@@ -7,7 +7,7 @@ var con = mysql.createConnection({
     host : "us-cdbr-east-03.cleardb.com",
     user : "b5015f599c4103",
     password : "7392f867",
-    db : "heroku_9f485881cdbde55"
+    database : "heroku_9f485881cdbde55"
 })
 
 let sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(3), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
