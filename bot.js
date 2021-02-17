@@ -108,13 +108,13 @@ bot.command('Бот дз ', (ctx) => {
 
     if (check){
         Message_answer = 'Данные внесены в базу'
-        /*
-            var sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values ('id', 'H', 'Description_of_Homework', 'DateH', 'TimeH')";
+
+            sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values ('id', 'H', 'Description_of_Homework', 'DateH', 'TimeH')";
             con.query("SELECT * FROM customers", function (err, result, fields) {
                 if (err) throw err;
                 Message_answer = 'Sempai' + result[0].idgroup + result[0].Hoe + result[0].Codition;
             });
-        */
+
     }
     else {
         Message_answer = 'Вы ошиблись'
