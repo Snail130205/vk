@@ -10,16 +10,7 @@ const con = mysql.createConnection({
     db : "heroku_9f485881cdbde55"
 })
 
-let sql;
-
-con.connect(function(err) {
-    if (err) throw err;
-
-    sql = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
-    con.end ((err) => {
-        if (err) throw err;
-    })
-})
+let sql  = "CREATE TABLE customers (idgroup VARCHAR(10), HoE VARCHAR(1), Condition VARCHAR (255), Dates VARCHAR(12), timing VARCHAR(5))";
 
 
 
@@ -44,7 +35,7 @@ bot.command('/help', (ctx) => {
 });
 
 //Бот дз, проверка, запись дз в базу данных
-bot.command('Бот дз ', (ctx, sql) => {
+bot.command('Бот дз ', (ctx) => {
     let message = ctx.message.text; // получаемый текст
     let id = ctx.message.peer_id; // айди беседы
     let Description_of_Homework = ''; // условие дз
@@ -117,18 +108,12 @@ bot.command('Бот дз ', (ctx, sql) => {
 
     if (check){
         Message_answer = 'Данные внесены в базу'
-        con.connect((err)=>{
-            if (err) throw err;
             sql = "INSERT INTO customers (idgroup, HoE, Codition, Dates, timing) values (id, 'H', Description_of_Homework, DateH, TimeH)";
             con.query(sql, function (err, result, fields) {
                 if (err) throw err;
                 Message_answer = 'Sempai' + result;
             });
 
-            con.end((err)=>{
-                if (err) throw err;
-            })
-        })
     }
     else {
         Message_answer = 'Вы ошиблись'
