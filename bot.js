@@ -170,7 +170,9 @@ bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
 })
 */
-
+con.end((err)=>{
+    if (err) throw err;
+})
 
 
 const PORT = process.env.PORT || 80
