@@ -44,7 +44,8 @@ bot.command('/help', (ctx) => {
 //Бот дз, проверка, запись дз в базу данных
     bot.command('Бот дз ', (ctx) => {
     let message = ctx.message.text; // получаемый текст
-    let id = ctx.message.peer_id; // айди беседы
+    let idint = ctx.message.peer_id; // айди беседы
+    let id = String(idint)
     var HoE = 'H'
     let Description_of_Homework = ''; // условие дз
     let CheckDescription = 0; // проверка условий
@@ -101,9 +102,12 @@ bot.command('/help', (ctx) => {
                     TimeH = '-'
                 }
                 else{
-                    TimeH = message.substr(i, message.length - i)
+                    TimeH = message.substr(i , message.length - i)
+                    console.log(TimeH);
+
                     let reTime = new RegExp("\\s(\\d{2}:\\d{2})", "gim")
                     if(reTime.test(TimeH)){
+                        TimeH = TimeH.substr(1,5)
                         CrashTest = false
                         check = true
                     }
@@ -128,35 +132,36 @@ bot.command('/help', (ctx) => {
     else {
         Message_answer = 'Вы ошиблись'
     }
+    console.log(Message_answer);
+
     ctx.reply(Message_answer);
 })
 
+
+
 bot.command('Все дз', (ctx) =>{
-    let id = ctx.message.peer_id; // айди беседы
-    let message = '';
-    let query = "SELECT * FROM customers";
-    var adr = id;
+    let idint = ctx.message.peer_id; // айди беседы
+    let id = String(idint);
+    message = '';
+    let query = "SELECT * FROM customers WHERE idgroup = ?";
     let strN;
-    con.query ("select count(1) FROM customers", (err, result,fields) => {
+    con.query ("select count(1) FROM customers WHERE idgroup = ?", [id], (err, result,fields) => {
         if (err) throw err;
         let str = JSON.stringify(result)
         let l = str.length - 15
         str = str.substr(13, l)
         strN = Number(str);
-        console.log(strN);
+
     })
-    con.query(query, function (err, result,fields) {
+    con.query(query, [id], function (err, result,fields) {
         if (err) throw err;
+        console.log('connect')
         for (let i = 0; i < strN; i++){
-            if (result[i].Dates == '-'){
-            message = 'Сдать дз' + result[i].Dates + result[i].timing +  '\n' + 'ДЗ ' + result[i].Condition1 + '\n'
-            }
-            else{
-                message = 'Сдать дз до' + result[i].Dates  + '\n' + 'ДЗ ' + result[i].Condition1 +'\n'
-            }
+            message = message + 'Сдать дз до' + result[i].Dates + ' ' + result[i].timing +  '\n' + 'ДЗ ' + result[i].Condition1 + '\n'
         }
+        console.log(message);
+        ctx.reply(message);
     });
-    ctx.reply(message);
 })
 /*
 bot.on((ctx)=>{
