@@ -10,12 +10,30 @@ const bot = new VKBot({
     confirmation : "93cc93d9"
 });
 
-var con = mysql.createConnection({
+var dbConfig = {
     host : "us-cdbr-east-03.cleardb.com",
     user : "b4587dcf2c387d",
     password : "8fbd3692",
     database : "heroku_5b614e065794d0c"
-})
+}
+var con;
+function handleDisconnect() {
+    con = mysql.createConnection(dbConfig);  // Recreate the connection, since the old one cannot be reused.
+    con.connect( function onConnect(err) {   // The server is either down
+        if (err) {                                  // or restarting (takes a while sometimes).
+            console.log('error when connecting to db:', err);
+            setTimeout(handleDisconnect, 10000);    // We introduce a delay before attempting to reconnect,
+        }                                           // to avoid a hot loop, and to allow our node script to
+    });                                             // process asynchronous requests in the meantime.
+                                                    // If you're also serving http, display a 503 error.
+    con.on('error', function onError(err) {
+        console.log('db error', err);
+        if (err.code == 'PROTOCOL_CONNECTION_LOST') {   // Connection to the MySQL server is usually
+            handleDisconnect();                         // lost due to either server restart, or a
+        } else {                                        // connnection idle timeout (the wait_timeout
+            throw err;                                  // server variable configures this)
+        }
+    });
 /*
 con.query("SET SESSION wait_timeout = 2592000"); // 7 days timeout
 con.query("SELECT * FROM customers",(err,result)=>{
@@ -127,17 +145,13 @@ bot.command('/help', (ctx) => {
 
     if (check){
         Message_answer = 'Данные внесены в базу'
-    con.connect((err)=>{
+
             var sql = "INSERT INTO customers (idgroup, HoE, Dates, timing, Condition1) VALUES ?";
             var values = [[id, HoE, DateH, TimeH, Description_of_Homework]]
             con.query(sql, [values], function (err, result) {
 
                 if (err) throw err;
             });
-            con.end((err)=>{
-                if (err) throw err;
-            })
-    })
     }
     else {
         Message_answer = 'Вы ошиблись'
@@ -178,8 +192,8 @@ bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
 })
 */
-
-
+}
+handleDisconnect();
 
 const PORT = process.env.PORT || 80
 
