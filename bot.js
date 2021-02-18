@@ -16,6 +16,8 @@ var con = mysql.createConnection({
     password : "8fbd3692",
     database : "heroku_5b614e065794d0c"
 })
+con.connect((err)=>{
+    if (err) throw err;
 
 
 /*
@@ -179,4 +181,5 @@ server.post('/', bot.webhookCallback)
 
 server.listen(PORT, () =>{
     console.log('Server has been started')
+    })
 })
