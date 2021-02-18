@@ -129,8 +129,34 @@ bot.command('/help', (ctx) => {
         Message_answer = 'Вы ошиблись'
     }
     ctx.reply(Message_answer);
+})
 
-
+bot.command('Все дз', (ctx) =>{
+    let id = ctx.message.peer_id; // айди беседы
+    let message = '';
+    let query = "SELECT * FROM customers WHERE idgroup = ?";
+    var adr = id;
+    let strN;
+    con.query ("select count(1) FROM customers WHERE idgroup = ?", [adr], (err, result,fields) => {
+        if (err) throw err;
+        let str = JSON.stringify(result)
+        let l = str.length - 15
+        str = str.substr(13, l)
+        strN = Number(str);
+        console.log(strN);
+    })
+    con.query(query, [adr], function (err, result,fields) {
+        if (err) throw err;
+        for (let i = 0; i < strN; i++){
+            if (result[i].Dates == '-'){
+            message = 'Сдать дз' + result[i].Dates + result[i].timing +  '\n' + 'ДЗ ' + result[i].Condition1 + '\n'
+            }
+            else{
+                message = 'Сдать дз до' + result[i].Dates  + '\n' + 'ДЗ ' + result[i].Condition1 +'\n'
+            }
+        }
+    });
+    ctx.reply(message);
 })
 /*
 bot.on((ctx)=>{
