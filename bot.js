@@ -16,10 +16,14 @@ var con = mysql.createConnection({
     password : "8fbd3692",
     database : "heroku_5b614e065794d0c"
 })
-con.connect((err)=>{
-    if (err) throw err;
+/*
+con.query("SET SESSION wait_timeout = 2592000"); // 7 days timeout
+con.query("SELECT * FROM customers",(err,result)=>{
+    if(err)throw err;
+    console.log(result)
+})
 
-
+ */
 /*
     var sql = "ALTER TABLE customers ADD Condition1 varchar(255)";
     con.query(sql, function (err, result) {
@@ -123,13 +127,17 @@ bot.command('/help', (ctx) => {
 
     if (check){
         Message_answer = 'Данные внесены в базу'
-
+    con.connect((err)=>{
             var sql = "INSERT INTO customers (idgroup, HoE, Dates, timing, Condition1) VALUES ?";
             var values = [[id, HoE, DateH, TimeH, Description_of_Homework]]
             con.query(sql, [values], function (err, result) {
 
                 if (err) throw err;
             });
+            con.end((err)=>{
+                if (err) throw err;
+            })
+    })
     }
     else {
         Message_answer = 'Вы ошиблись'
@@ -170,9 +178,7 @@ bot.on((ctx)=>{
     // ctx.reply(ctx.message.peer_id)
 })
 */
-con.end((err)=>{
-    if (err) throw err;
-})
+
 
 
 const PORT = process.env.PORT || 80
@@ -183,5 +189,4 @@ server.post('/', bot.webhookCallback)
 
 server.listen(PORT, () =>{
     console.log('Server has been started')
-    })
 })
