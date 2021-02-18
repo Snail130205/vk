@@ -134,10 +134,10 @@ bot.command('/help', (ctx) => {
 bot.command('Все дз', (ctx) =>{
     let id = ctx.message.peer_id; // айди беседы
     let message = '';
-    let query = "SELECT * FROM customers WHERE idgroup = ?";
+    let query = "SELECT * FROM customers";
     var adr = id;
     let strN;
-    con.query ("select count(1) FROM customers WHERE idgroup = ?", [adr], (err, result,fields) => {
+    con.query ("select count(1) FROM customers", (err, result,fields) => {
         if (err) throw err;
         let str = JSON.stringify(result)
         let l = str.length - 15
@@ -145,7 +145,7 @@ bot.command('Все дз', (ctx) =>{
         strN = Number(str);
         console.log(strN);
     })
-    con.query(query, [adr], function (err, result,fields) {
+    con.query(query, function (err, result,fields) {
         if (err) throw err;
         for (let i = 0; i < strN; i++){
             if (result[i].Dates == '-'){
